@@ -20,7 +20,6 @@ dependencies {
     implementation(enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}"))
 
     implementation("io.quarkus:quarkus-kotlin")
-    implementation("com.microsoft.playwright:playwright:$playwrightVersion")
 
     implementation("io.quarkus:quarkus-rest:$quarkusRestVersion")
     implementation("io.quarkus:quarkus-rest-jackson:$quarkusRestVersion")
@@ -29,12 +28,14 @@ dependencies {
     implementation("io.quarkus:quarkus-mongodb-panache")
     implementation("io.quarkus:quarkus-mongodb-panache-kotlin")
 
+    implementation("io.quarkus:quarkus-arc")
 
     implementation("io.quarkus:quarkus-config-yaml")
 
+    implementation("com.microsoft.playwright:playwright:$playwrightVersion")
+
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion")
 
-    implementation("io.quarkus:quarkus-arc")
     testImplementation("io.quarkus:quarkus-junit5")
     testImplementation("io.rest-assured:rest-assured")
 
