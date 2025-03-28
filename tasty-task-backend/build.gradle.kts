@@ -25,19 +25,23 @@ dependencies {
     implementation("io.quarkus:quarkus-rest-jackson:$quarkusRestVersion")
     implementation("io.quarkus:quarkus-rest-links:$quarkusRestVersion")
 
-    implementation("io.quarkus:quarkus-mongodb-panache")
     implementation("io.quarkus:quarkus-mongodb-panache-kotlin")
+    implementation("io.quarkus:quarkus-mongodb-client")
+
 
     implementation("io.quarkus:quarkus-arc")
 
     implementation("io.quarkus:quarkus-config-yaml")
 
+    implementation("io.quarkus:quarkus-smallrye-openapi")
+
     implementation("com.microsoft.playwright:playwright:$playwrightVersion")
 
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion")
 
-    testImplementation("io.quarkus:quarkus-junit5")
     testImplementation("io.rest-assured:rest-assured")
+    testImplementation("io.quarkus:quarkus-junit5")
+    testImplementation("io.quarkus:quarkus-test-mongodb")
 
 }
 
