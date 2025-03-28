@@ -29,11 +29,15 @@ dependencies {
     implementation("io.quarkus:quarkus-mongodb-panache")
     implementation("io.quarkus:quarkus-mongodb-panache-kotlin")
 
+
+    implementation("io.quarkus:quarkus-config-yaml")
+
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion")
 
     implementation("io.quarkus:quarkus-arc")
     testImplementation("io.quarkus:quarkus-junit5")
     testImplementation("io.rest-assured:rest-assured")
+
 }
 
 group = "de.reinhardy.tastytask"
@@ -46,6 +50,8 @@ java {
 
 tasks.withType<Test> {
     systemProperty("java.util.logging.manager", "org.jboss.logmanager.LogManager")
+    jvmArgs("-Dquarkus.test.continuous-testing.enabled=true")
+
 }
 tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
