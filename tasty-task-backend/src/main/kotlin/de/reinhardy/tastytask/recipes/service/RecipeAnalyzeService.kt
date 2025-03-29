@@ -13,9 +13,8 @@ class RecipeAnalyzeService(
 ) {
 
     fun extractStructuredData(recipeText: String): String {
-        val refinedRecipeText = recipeText.replaceCommasInNumbers().replaceRemainingCommas()
 
-        val prompt = buildPrompt(refinedRecipeText)
+        val prompt = buildPrompt(recipeText)
 
         val ollamaResponse = ollamaAdapter.generate(
             OllamaRequest(
@@ -47,7 +46,7 @@ class RecipeAnalyzeService(
                 6.  If amount or unit is unknown, leave it blank (e.g., "Zucker,,")
                 7.  Clean up and standardize units (g, ml, Pck, etc.)
                 8.  Use comma as separators
-                9.  You must not add explanations
+                9.  You must not add explanations!!!
                 
                 Recipe text:
                 $recipeText
@@ -56,9 +55,5 @@ class RecipeAnalyzeService(
             """.trimIndent()
     }
 
-    fun String.replaceCommasInNumbers(): String = replace("""(\d+),(\d+)""".toRegex()) { matchResult ->
-            val (before, after) = matchResult.destructured
-            "$before.$after"
-        }
-    fun String.replaceRemainingCommas(): String = replace(",", "|")
+
 }

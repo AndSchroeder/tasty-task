@@ -12,11 +12,11 @@ class RecipeScrapperService {
     private companion object{
         val INGREDIENT_SELECTORS = listOf(
             ".ingredients",
+            ".recipe-ingredients__list",
             ".recipe-ingredients",
             ".ingredients-list",
             "[itemprop='recipeIngredient']",
             ".wprm-recipe-ingredient-group",
-            ".recipe__ingredient-list",
         )
     }
 
@@ -40,16 +40,12 @@ class RecipeScrapperService {
         }
 
         page.close()
-        return ingredientsContent.reduceWhitespaces()
+        return ingredientsContent
     }
 
     private fun parseToString(elements: List<ElementHandle>): String = elements.joinToString("") {
         it.textContent().trim()
     }
 
-    private fun String.reduceWhitespaces() = lines()
-        .map { it.trim() }
-        .filter { it.isNotEmpty() }.joinToString("|") { line ->
-            line.replace(Regex("\\s+"), " ")
-    }
+
 }

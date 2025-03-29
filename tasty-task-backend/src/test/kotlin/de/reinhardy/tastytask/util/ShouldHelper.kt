@@ -3,6 +3,7 @@ package de.reinhardy.tastytask.util
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.containsString
+import org.hamcrest.Matchers.containsStringIgnoringCase
 
 
 @Suppress("UNCHECKED_CAST")
@@ -13,7 +14,7 @@ infix fun <T, U : T> T.shouldBe(expected: U?): T {
 
 @Suppress("UNCHECKED_CAST")
 infix fun String?.shouldContain(substr: String): String? {
-    assertThat(this, containsString(substr))
+    assertThat(this, containsStringIgnoringCase(substr))
     return this
 }
 

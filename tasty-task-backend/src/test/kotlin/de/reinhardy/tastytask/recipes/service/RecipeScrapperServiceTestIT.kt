@@ -9,6 +9,11 @@ import org.junit.jupiter.api.Test
 @QuarkusTest
 class RecipeScrapperServiceTestIT : AbstractIntegrationTestIT() {
 
+    companion object {
+        const val CHEFKOCH_SCRAPPING_RESULT = "450                                g                            \n                    \n                                                    Mehl \n                                                                    \n                \n                                            \n                                        \n                                1                                TL                            \n                    \n                                                    Salz \n                                                                    \n                \n                                            \n                                        \n                                3                                EL                            \n                    \n                                                    Olivenöl \n                                                                    \n                \n                                            \n                                        \n                                250                                ml                            \n                    \n                                                    Wasser, lauwarmes\n                                                                    \n                \n                                            \n                                        \n                                1                                Pck.                            \n                    \n                                                    Trockenhefe, 7 g"
+        const val ESSEN_UND_TRINKEN_SCRAPPING_RESULT = "250  \ng\ng\nMehl\n ½  \nTl\nTl\nSalz\n ½  \nWürfel\nWürfel\nfrische Hefe\n(ca. 20 g)\n ½  \nTl\nTl\nZucker\n 4  \nEl\nEl\nOlivenöl"
+    }
+
     @Inject
     private lateinit var sut: RecipeScrapperService
 
@@ -18,7 +23,7 @@ class RecipeScrapperServiceTestIT : AbstractIntegrationTestIT() {
 
         val result = sut.scrapeRecipeFromUrl(url)
 
-        result shouldBe """450 g|Mehl|1 TL|Salz|3 EL|Olivenöl|250 ml|Wasser, lauwarmes|1 Pck.|Trockenhefe, 7 g"""
+        result shouldBe CHEFKOCH_SCRAPPING_RESULT
     }
 
     @Test
@@ -27,6 +32,6 @@ class RecipeScrapperServiceTestIT : AbstractIntegrationTestIT() {
 
         val result = sut.scrapeRecipeFromUrl(url)
 
-        result shouldBe """Zutaten|Für|2|Portionen|250|g|g|Mehl|½|Tl|Tl|Salz|½|Würfel|Würfel|frische Hefe|(ca. 20 g)|½|Tl|Tl|Zucker|4|El|El|Olivenöl"""
+        result shouldBe ESSEN_UND_TRINKEN_SCRAPPING_RESULT
     }
 }
