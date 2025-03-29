@@ -1,0 +1,12 @@
+quarkus:
+  http:
+    port: 8099
+  mongodb:
+    connection-string: "mongodb://root:example@localhost:27017"
+    database: tasty-task
+de:
+  reinhardy:
+    tastytask:
+      ollama:
+        url: "http://localhost:11434"
+        model: "mistral:latest"
