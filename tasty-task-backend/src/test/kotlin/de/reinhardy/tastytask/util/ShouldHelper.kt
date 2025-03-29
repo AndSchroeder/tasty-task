@@ -2,6 +2,7 @@ package de.reinhardy.tastytask.util
 
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
+import org.hamcrest.Matchers.containsInAnyOrder
 import org.hamcrest.Matchers.containsString
 import org.hamcrest.Matchers.containsStringIgnoringCase
 
@@ -23,6 +24,20 @@ infix fun String?.shouldContain(substrList: Collection<String>): String? {
     substrList.forEach {
         this shouldContain it
     }
+    return this
+}
+
+@Suppress("UNCHECKED_CAST")
+fun <T, C: Collection<T>> C?.shouldContainInAnyOrder(vararg expected: T): C? {
+    expected.forEach {
+        assertThat(this, containsInAnyOrder(it))
+    }
+    return this
+}
+
+@Suppress("UNCHECKED_CAST")
+infix fun <T, C: Collection<T>> C?.shouldContain(expected: T): C? {
+        assert(this?.contains(expected) == true) { "collection $this does not contain expected $expected" }
     return this
 }
 
