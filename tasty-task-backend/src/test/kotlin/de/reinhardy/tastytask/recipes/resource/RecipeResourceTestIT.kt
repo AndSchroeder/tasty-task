@@ -3,6 +3,7 @@ package de.reinhardy.tastytask.recipes.resource
 import de.reinhardy.tastytask.AbstractIntegrationTestIT
 import de.reinhardy.tastytask.recipes.model.createSampleRecipe
 import de.reinhardy.tastytask.recipes.model.entity.Recipe
+import de.reinhardy.tastytask.util.shouldBe
 import io.quarkus.test.junit.QuarkusTest
 import org.bson.types.ObjectId
 import org.hamcrest.CoreMatchers.`is`
@@ -62,14 +63,14 @@ class RecipeResourceTestIT: AbstractIntegrationTestIT() {
         id: ObjectId
     ) {
         with(recipe) {
-            assertThat(this.id, `is`(id))
-            assertThat(title, `is`("Blaubeeren"))
-            assertThat(link, `is`("http://blaubeeren.de"))
-            assertThat(title, `is`("Blaubeeren"))
+            this.id shouldBe id
+            title shouldBe "Blaubeeren"
+            link shouldBe "http://blaubeeren.de"
+            title shouldBe "Blaubeeren"
             with(recipeIngredients.single()) {
-                assertThat(name, `is`("Blaubeeren"))
-                assertThat(amount, `is`("200"))
-                assertThat(unit, `is`("g"))
+                name shouldBe "Blaubeeren"
+                amount shouldBe "200"
+                unit shouldBe "g"
             }
         }
     }
